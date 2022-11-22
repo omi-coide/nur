@@ -51,6 +51,11 @@ jobs:
         extra_nix_config: |
           experimental-features = nix-command flakes
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+    - name: Debug via SSH
+      uses: luchihoratiu/debug-via-ssh@v1.1
+      with:
+          NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+          SSH_PASS: ${{ secrets.SSH_PASS }}
     - name: Show nixpkgs version
       run: sudo systemctl restart nix-daemon.service;sleep 10; nix-instantiate --eval -E '(import <nixpkgs> {}).lib.version'
     - name: Setup cachix
