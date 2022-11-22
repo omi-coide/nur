@@ -33,7 +33,7 @@ jobs:
         # Github found at
         # https://github.com/<your_githubname>/nur-packages/settings/secrets
         cachixName:
-          - <YOUR_CACHIX_NAME>
+          - omi-misae
         nixPath:
           - nixpkgs=channel:nixpkgs-unstable
     runs-on: ubuntu-latest
