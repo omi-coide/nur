@@ -1,6 +1,8 @@
 {
   description = "My personal NUR repository";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs = {
+    url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
   outputs = { self, nixpkgs }:
     let
       systems = [
@@ -15,7 +17,7 @@
     in
     {
       packages = forAllSystems (system: import ./default.nix {
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs { inherit system; config = {allowUnfree = true;}; };
       });
     };
 }
