@@ -1,5 +1,6 @@
 { callPackage
 , config
+, pkgs
 , lib
 , cudaPackages
 , cudaSupport ? config.cudaSupport or false
@@ -44,6 +45,7 @@ in
 
 callPackage real-drv {
   inherit cudaSupport cudaPackages;
+  inherit pkgs;
   inherit (found-version) version lang src;
   name = ("mathematica"
     + lib.optionalString cudaSupport "-cuda"
