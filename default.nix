@@ -15,6 +15,7 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   test-app = pkgs.libsForQt5.callPackage ./pkgs/test-app { };
+  mathematica = pkgs.callPackage ./pkgs/mathematica/default.nix { version = "13.1.0"; lang = "cn"; };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
