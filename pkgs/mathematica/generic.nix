@@ -1,6 +1,7 @@
 { addOpenGLRunpath
 , autoPatchelfHook
 , lib
+, pkgs
 , makeWrapper
 , requireFile
 , runCommand
@@ -127,7 +128,7 @@ stdenv.mkDerivation {
 
   wrapProgramFlags = [
     "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ gcc-unwrapped.lib zlib ]}"
-    "--prefix PATH : ${lib.makeBinPath [ stdenv.cc ]}"
+    "--prefix PATH : ${lib.makeBinPath [ stdenv.cc pkgs.coreutils ]}"
     # Fix libQt errors - #96490
     "--set USE_WOLFRAM_LD_LIBRARY_PATH 1"
     # Fix xkeyboard config path for Qt
