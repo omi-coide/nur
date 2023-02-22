@@ -18,6 +18,9 @@
   mathematica = pkgs.callPackage ./pkgs/mathematica/default.nix { inherit pkgs; version = "13.1.0"; lang = "cn"; };
   understand = pkgs.callPackage ./pkgs/understand/default.nix { inherit pkgs; wrapQtAppsHook = pkgs.qt6Packages.wrapQtAppsHook; };
   understand-fhs = pkgs.callPackage ./pkgs/understand-fhs/default.nix { inherit pkgs;  };
+  vita3k = callPackage ./pkgs/vita3k {
+    stdenv = llvmPackages_14.stdenv;
+  };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
