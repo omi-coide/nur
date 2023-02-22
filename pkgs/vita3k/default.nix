@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
     repo = "Vita3K";
     rev = "8a151e587e40a2b7b143a635a887f9d5dd81e2cb";
     fetchSubmodules = true;
-    sha256 = "";
+    sha256 = "sha256-56+3nX8zkkb0vx1pyT2c0NCi3p7ix1OP65/wHTRm3OM=";
   };
 
   postPatch = ''
