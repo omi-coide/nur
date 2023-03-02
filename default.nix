@@ -19,6 +19,8 @@
   vita3k = pkgs.callPackage ./pkgs/vita3k {
     stdenv = pkgs.llvmPackages_14.stdenv;
   };
+  NetAnim = pkgs.libsForQt5.callPackage ./pkgs/NetAnim { stdenv = pkgs.gcc12Stdenv; gcc = pkgs.gcc12; };
+
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
