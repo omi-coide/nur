@@ -16,6 +16,8 @@
 
   test-app = pkgs.libsForQt5.callPackage ./pkgs/test-app { };
   mathematica = pkgs.callPackage ./pkgs/mathematica/default.nix { inherit pkgs; version = "13.1.0"; lang = "cn"; };
+  understand = pkgs.callPackage ./pkgs/understand/default.nix { inherit pkgs; wrapQtAppsHook = pkgs.qt6Packages.wrapQtAppsHook; };
+  understand-fhs = pkgs.callPackage ./pkgs/understand-fhs/default.nix { inherit pkgs;  };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
