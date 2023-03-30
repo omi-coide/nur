@@ -12,7 +12,7 @@ mkDerivation {
   configurePhase = "qmake";
   buildPhase = "make";
   installPhase = "install -D app $out/bin/test-app";
-  buildInputs = [qtbase qmake qttools libGL];
+  buildInputs = [ qtbase qmake qttools libGL ];
   nativeBuildInputs = [ wrapQtAppsHook ];
 }
 

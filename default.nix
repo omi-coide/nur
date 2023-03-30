@@ -16,6 +16,11 @@
 
   test-app = pkgs.libsForQt5.callPackage ./pkgs/test-app { };
   mathematica = pkgs.callPackage ./pkgs/mathematica/default.nix { inherit pkgs; version = "13.1.0"; lang = "cn"; };
+  vita3k = pkgs.callPackage ./pkgs/vita3k {
+    stdenv = pkgs.llvmPackages_14.stdenv;
+  };
+  NetAnim = pkgs.libsForQt5.callPackage ./pkgs/NetAnim { stdenv = pkgs.gcc12Stdenv; gcc = pkgs.gcc12; };
+
   understand = pkgs.callPackage ./pkgs/understand/default.nix { inherit pkgs; wrapQtAppsHook = pkgs.qt6Packages.wrapQtAppsHook; };
   understand-fhs = pkgs.callPackage ./pkgs/understand-fhs/default.nix { inherit pkgs;  };
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
