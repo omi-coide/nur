@@ -1,13 +1,17 @@
 { config, pkgs, lib, ... }:
 let
-  src = pkgs.fetchurl {
-    url = "https://latest.scitools.com/Understand/Understand-6.3.1136-Linux-64bit.tgz";
-    sha256 = "sha256-ftF1bAaFvZtbPThQeEONrUSj/nKx2iySfDT7SxRx+5M=";
+  src = pkgs.requireFile {
+    name = "Understand-5.1.1029-Linux-64bit.tgz";
+    message = ''
+      This nix expression requires that Understand5.1 is
+      already part of the store. Find the file on your Mathematica CD
+      and add it to the nix store with nix-store --add-fixed sha256 <FILE>.
+    '';
+    sha256 = "sha256-t0PF1JrKoIxGhxIg6ByAQ8Ls46YKR5L0Mnr0c98K31I=";
   };
   makeWrapper = pkgs.makeWrapper;
   mkDerivation = pkgs.stdenv.mkDerivation;
   autoPatchelfHook = pkgs.autoPatchelfHook;
-  buildFHSUserEnv = pkgs.buildFHSUserEnv;
 in
 mkDerivation {
   name = "scitoolsUnderstand";
@@ -18,8 +22,7 @@ mkDerivation {
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
     license = licenses.unfree;
     platforms = [ "x86_64-linux" ];
-    maintainers = "omi-coide";
-    broken = true;
+    maintainers = ["omi-coide"];
   };
   inherit src;
   nativeBuildInputs = [
@@ -31,6 +34,7 @@ mkDerivation {
     astyle
     cups
     dbus
+    expat
     fontconfig
     freetype
     glib
@@ -47,6 +51,7 @@ mkDerivation {
     nspr
     nss
     python310
+    pciutils
     util-linux
     xorg.libX11
     xorg.libXau
@@ -75,6 +80,9 @@ mkDerivation {
   '';
 
   installPhase = ''
+    rm $out/bin/linux64/libfreetype.so.6
+    chmod a-x $out/bin/linux64/lib*.so*
+    find $out/bin/linux64 -name '*.so*' |xargs chmod a-x
     autoPatchelf $out
     patchelf --add-rpath $out/bin/linux64/Plugins/platforms $out/bin/linux64/understand
     wrapProgram "$out/bin/linux64/understand" --set JAVA_HOME "${pkgs.jre_minimal.home}"
