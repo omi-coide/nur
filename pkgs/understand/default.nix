@@ -22,7 +22,7 @@ mkDerivation {
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
     license = licenses.unfree;
     platforms = [ "x86_64-linux" ];
-    maintainers = ["omi-coide"];
+    maintainers = [ "omi-coide" ];
   };
   inherit src;
   nativeBuildInputs = [
