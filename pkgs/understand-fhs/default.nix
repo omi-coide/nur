@@ -9,7 +9,7 @@ let
         sourceProvenance = with sourceTypes; [ binaryNativeCode ];
         license = licenses.unfree;
         platforms = [ "x86_64-linux" ];
-        maintainers = ["omi-coide"];
+        maintainers = [ "omi-coide" ];
       };
       src = pkgs.requireFile {
         name = "Understand-5.1.1029-Linux-64bit.tgz";
